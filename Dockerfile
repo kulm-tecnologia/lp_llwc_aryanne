@@ -1,46 +1,42 @@
-# --- Estágio 1: Build do Aplicativo React ---
-# Usa uma imagem Node.js para construir o app
-FROM node:18-alpine AS builder
+# --- Estágio 1: Build do Aplicativo React + Vite ---
+FROM node:20-alpine AS builder
 
-# Define o diretório de trabalho dentro do contêiner
+# Define o diretório de trabalho
 WORKDIR /app
 
-# Copia package.json e package-lock.json para instalar dependências
+# Copia arquivos de dependências
 COPY package*.json ./
 
-# Instala as dependências do projeto
-RUN npm install
+# Instala as dependências
+RUN npm ci
 
-# Copia o restante do código-fonte
+# Copia o código-fonte
 COPY . .
 
-# Constrói a versão de produção do aplicativo React
+# Constrói a aplicação (sem variáveis de ambiente, serão injetadas em runtime)
 RUN npm run build
 
 # --- Estágio 2: Servir com Express ---
-# Usa uma imagem Node.js leve para servir os arquivos estáticos
-FROM node:18-alpine
+FROM node:20-alpine
 
-# Define o diretório de trabalho dentro do contêiner
 WORKDIR /app
 
-# Copia package.json para instalar dependências
-COPY package*.json ./
-
-# Instala apenas as dependências de produção
-RUN npm install --production
+# Copia o package.json para manter "type": "module" e instala apenas o Express
+COPY package.json ./
+RUN npm install --omit=dev --ignore-scripts express
 
 # Copia o servidor Express
 COPY server.js .
 
-# Copia os arquivos de build do estágio anterior
-COPY --from=builder /app/build ./build
+# Copia os arquivos de build do estágio anterior (pasta dist do Vite)
+COPY --from=builder /app/dist ./dist
 
-# Expõe a porta 8080 (necessária para Google Cloud Run)
+# Expõe a porta 8080 (padrão do Cloud Run)
 EXPOSE 8080
 
-# Define a variável de ambiente PORT para 8080
+# Define a variável de ambiente PORT
 ENV PORT=8080
 
-# Comando para iniciar o servidor Express
+# Comando para iniciar o servidor
 CMD ["node", "server.js"]
+
