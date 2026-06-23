@@ -1,0 +1,26 @@
+.cta-button {
+  display: inline-block;
+  padding: 1rem 2.25rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-button--primary {
+  background: linear-gradient(135deg, var(--color-gold), #e0bd72);
+  color: var(--color-primary-dark);
+  box-shadow: 0 10px 25px rgba(201, 161, 74, 0.4);
+}
+
+.cta-button--secondary {
+  background: var(--color-white);
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+}

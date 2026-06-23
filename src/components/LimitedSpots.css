@@ -1,0 +1,18 @@
+.limited-spots {
+  padding: 4rem 1.5rem;
+  background: var(--color-bg);
+}
+
+.limited-spots__inner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.limited-spots__text {
+  color: var(--color-text-soft);
+  font-size: 1.05rem;
+}

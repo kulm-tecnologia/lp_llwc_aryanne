@@ -1,0 +1,38 @@
+.section-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 2.5rem;
+}
+
+.section-title--center {
+  align-items: center;
+  text-align: center;
+}
+
+.section-title--left {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.section-title__eyebrow {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--color-gold);
+}
+
+.section-title__title {
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  color: var(--color-primary-dark);
+}
+
+.section-title--light .section-title__title {
+  color: var(--color-white);
+}
+
+.section-title--light .section-title__eyebrow {
+  color: var(--color-gold);
+}
