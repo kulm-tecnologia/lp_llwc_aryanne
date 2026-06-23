@@ -10,6 +10,7 @@ import Accommodation from './components/Accommodation'
 import Transport from './components/Transport'
 import Itinerary from './components/Itinerary'
 import NotIncluded from './components/NotIncluded'
+import Included from './components/Included'
 import Assistance from './components/Assistance'
 import MoreThanTrip from './components/MoreThanTrip'
 import Investment from './components/Investment'
@@ -31,6 +32,7 @@ function App() {
       <Accommodation />
       <Transport />
       <Itinerary />
+      <Included />
       <NotIncluded />
       <Assistance />
       <MoreThanTrip />
